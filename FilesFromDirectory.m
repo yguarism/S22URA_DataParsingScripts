@@ -33,17 +33,17 @@ classdef FilesFromDirectory
                    obj.file_names_no_extension = erase(obj.file_names, "." + filetype);
                    
                    % Build Absolute File Paths
-                   obj.absolute_filepaths = {};
+                   obj.absolute_filepaths = strings;
                    for i = 1:obj.num_files
-                       obj.absolute_filepaths{i} = fullfile(filelist(i).folder, filelist(i).name);
+                       obj.absolute_filepaths(i) = fullfile(filelist(i).folder, filelist(i).name);
                    end
                    
                    % Build Relative File Paths
-                   obj.relative_filepaths = {};
+                   obj.relative_filepaths = strings;
                    home_path = dir(path_string).folder;
                    for i = 1:obj.num_files
                        relative_path = strrep(filelist(i).folder, home_path, path_string);
-                       obj.relative_filepaths{i} = fullfile(relative_path, filelist(i).name);
+                       obj.relative_filepaths(i) = fullfile(relative_path, filelist(i).name);
                    end
                
                % File Type must be a String (i.e. "csv" or "mat")
