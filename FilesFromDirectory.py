@@ -21,11 +21,12 @@ class FilesFromDirectory:
   relative_filepaths = []
   num_files = 0
   file_type = ""
-  provided_directory_path = ""
+  original_directory_path = ""
+  added_directories = []
   
   def __init__(self, file_path, filetype):
     if (os.path.isdir(file_path)):
-        self.provided_directory_path = file_path
+        self.original_directory_path = file_path
         if (isinstance(filetype, str)):
           self.file_type = filetype
 
@@ -35,27 +36,28 @@ class FilesFromDirectory:
           self.absolute_filepaths = [os.path.abspath(p) for p in path.rglob("*") if p.name.endswith("." + filetype)]
           self.relative_filepaths = [p.__str__() for p in path.rglob("*") if p.name.endswith("." + filetype)]
           self.num_files = len(self.file_names)
+  
+  def addFilesfromPath(self, new_path):
+    path = pathlib.Path(new_path)
+    for p in path.rglob("*"):
+      if (p.name.endswith("." + self.file_type) & ((p.name in self.file_names) == False)):
+        self.file_names.append(p.name)
+        self.file_names_no_extension.append(p.name.replace("." + self.file_type, ""))
+        self.absolute_filepaths.append(os.path.abspath(p))
+        self.relative_filepaths.append(p.__str__())
+    
+    self.num_files = len(self.file_names)
+    self.added_directories.append(new_path)
 
-# Utilization Examples in Python
-z = FilesFromDirectory(r"www", "csv") # Non-existent directory
-print(z.absolute_filepaths)
-print(z.relative_filepaths)
-print(z.file_names_no_extension)
-print(z.num_files)
 
 x = FilesFromDirectory(r"..\\IV Raw Data\\2x40_3p_ChuckFloating\\", "csv")
-print(x.absolute_filepaths)
-print(x.relative_filepaths)
 print(x.file_names_no_extension)
 print(x.num_files)
+print(x.absolute_filepaths)
 
-for i, file in enumerate(x.file_names_no_extension):
-  if "DieB(57)" in file:
-    print(f"File Number with Matching String: {i}")
+x.addFilesfromPath(r"..\\IV Raw Data\\")
 
-
-y = FilesFromDirectory(r"..\\IV Raw Data\\", "mat")
-print(y.absolute_filepaths)
-print(y.relative_filepaths)
-print(y.file_names_no_extension)
-print(y.num_files)
+print("Now with added files")
+print(x.file_names)
+print(x.num_files)
+print(x.absolute_filepaths)
