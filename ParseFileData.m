@@ -1,4 +1,5 @@
 clear;
+addpath("functions\")
 path_string = "..\..\..\OneDrive\Documents\University\Fourth Year\4A\URA";
 csv_files_obj = FilesFromDirectory(path_string, "csv");
 mat_files_obj = FilesFromDirectory(path_string, "mat");
@@ -7,9 +8,6 @@ mat_path = mat_files_obj.relative_filepaths(2);
 
 
 data = IV_Data(csv_path);
-
-
-
 
 
 fclose('all');
