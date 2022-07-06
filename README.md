@@ -1,5 +1,5 @@
-# S22URA_DataParsingScripts
-Data Parsing Scripts - Summer Term (2022) URA with WEIS
+# IV Data Parsing Project
+Purpose: Create Data Parsing Scripts/Classes for reading IV test data. 
 
 Class 1 - FilesFromDirectory (Python and Matlab)
 - Takes in a file path string and file type (i.e. "csv")
@@ -8,3 +8,5 @@ Class 1 - FilesFromDirectory (Python and Matlab)
 Class 2 - IV_Data (Matlab)
 - Takes in file_path
 - Extracts Vg, Vd, Id, Ig (if available) data and parameters from csv or mat files
+
+Summer Term (2022) URA with WEIS
