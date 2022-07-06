@@ -38,5 +38,6 @@ function [vg_string_data, data_strings] = extractFileInfo(path)
         end
     end
 
+    fclose('all');
 end
 

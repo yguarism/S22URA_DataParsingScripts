@@ -1,9 +1,15 @@
 clear;
 path_string = "..\..\..\OneDrive\Documents\University\Fourth Year\4A\URA";
-files_obj = FilesFromDirectory(path_string, "csv");
-path = files_obj.relative_filepaths(16);
-disp(path)
+csv_files_obj = FilesFromDirectory(path_string, "csv");
+mat_files_obj = FilesFromDirectory(path_string, "mat");
+csv_path = csv_files_obj.relative_filepaths(3);
+mat_path = mat_files_obj.relative_filepaths(2);
 
-data_obj = VD_ID_Data(path, "csv");
+
+data = IV_Data(csv_path);
+
+
+
+
 
 fclose('all');
