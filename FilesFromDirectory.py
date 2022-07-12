@@ -49,15 +49,18 @@ class FilesFromDirectory:
     self.num_files = len(self.file_names)
     self.added_directories.append(new_path)
 
+def main():
+  x = FilesFromDirectory(r"..\\IV Raw Data\\2x40_3p_ChuckFloating\\", "csv")
+  print(x.file_names_no_extension)
+  print(x.num_files)
+  print(x.absolute_filepaths)
 
-x = FilesFromDirectory(r"..\\IV Raw Data\\2x40_3p_ChuckFloating\\", "csv")
-print(x.file_names_no_extension)
-print(x.num_files)
-print(x.absolute_filepaths)
+  x.addFilesfromPath(r"..\\IV Raw Data\\")
 
-x.addFilesfromPath(r"..\\IV Raw Data\\")
+  print("Now with added files")
+  print(x.file_names)
+  print(x.num_files)
+  print(x.absolute_filepaths)
 
-print("Now with added files")
-print(x.file_names)
-print(x.num_files)
-print(x.absolute_filepaths)
+if __name__ == "__main__":
+  main()
